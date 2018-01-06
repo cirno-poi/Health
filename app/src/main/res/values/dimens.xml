@@ -1,0 +1,12 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="login_font">20sp</dimen>
+    <dimen name="login_edt_font">17sp</dimen>
+
+    <!-- listview item -->
+    <dimen name="item_horizontal_margin">5dp</dimen>
+
+</resources>
