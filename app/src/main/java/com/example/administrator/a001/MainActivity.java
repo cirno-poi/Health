@@ -2,6 +2,8 @@ package com.example.administrator.a001;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -23,6 +25,15 @@ public class MainActivity extends FragmentActivity implements BottomNavigationBa
     private SearchFragment mSearchFragment;
     private MyFragment myFragment;
 
+    /**
+     * 页面跳转方法
+     *
+     * @param context 源页面context
+     */
+    public static void actionStart(Context context){
+        Intent intent  = new Intent(context,MainActivity.class);
+        context.startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

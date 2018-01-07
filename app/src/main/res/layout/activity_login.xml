@@ -21,13 +21,13 @@
         android:id="@+id/edtUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/imageView1"
         android:layout_marginTop="42dp"
-        android:drawableLeft="@drawable/ic_person_outline_black_24dp"
+        android:drawableStart="@drawable/ic_person_outline_black_24dp"
         android:drawablePadding="10dp"
         android:ems="10"
-        android:hint="请输入用户名"
+        android:hint="@string/input_username"
         android:textColor="@color/font_grey"
         android:textSize="@dimen/login_edt_font">
 
@@ -38,15 +38,17 @@
         android:id="@+id/edtPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/edtUsername"
+        android:layout_alignStart="@+id/edtUsername"
         android:layout_below="@+id/edtUsername"
         android:layout_marginTop="24dp"
-        android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
+        android:drawableStart="@drawable/ic_lock_outline_black_24dp"
         android:drawablePadding="10dp"
-        android:hint="请输入密码"
+        android:hint="@string/input_password"
         android:inputType="textPassword"
         android:textColor="@color/font_grey"
         android:textSize="@dimen/login_edt_font" />
+
+
 
     <Button
         android:id="@+id/btnLogin"
@@ -60,23 +62,37 @@
         android:textColor="@color/white"
         android:textSize="@dimen/login_font" />
 
-    <CheckBox
-        android:id="@+id/ckLogin"
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_toStartOf="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edtPassword"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="38dp"
+        android:background="@color/blue"
+        android:text="@string/login"
+        android:textColor="@color/white"
+        android:textSize="@dimen/login_font" />
+    <TextView
+        android:textSize="15sp"
+        android:id="@+id/tvRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/btnLogin"
+        android:layout_alignStart="@+id/btnLogin"
         android:layout_below="@+id/btnLogin"
         android:layout_marginTop="38dp"
         android:checked="true"
-        android:text="自动登录" />
+        android:text="@string/register_account" />
 
     <TextView
+        android:textSize="15sp"
         android:id="@+id/tvLostPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/ckLogin"
-        android:layout_alignBottom="@+id/ckLogin"
-        android:layout_alignRight="@+id/btnLogin"
-        android:text="忘记密码？" />
+        android:layout_alignBaseline="@+id/tvRegister"
+        android:layout_alignBottom="@+id/tvRegister"
+        android:layout_alignEnd="@+id/btnLogin"
+        android:text="@string/forget_password" />
 
 </RelativeLayout>
