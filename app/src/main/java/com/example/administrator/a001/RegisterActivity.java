@@ -2,6 +2,7 @@ package com.example.administrator.a001;
 
 import android.content.Context;
 import android.content.Intent;
+import android.nfc.Tag;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -9,6 +10,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.example.administrator.a001.bean.RegisterResponseBean;
 
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
@@ -21,6 +28,8 @@ import okhttp3.Response;
  */
 public class RegisterActivity extends AppCompatActivity {
 
+    public static final String TAG = "23333";
+
     private Button btnRegister;//注册按钮
     private String username = "";//用户名
     private String password = "";//密码
@@ -29,6 +38,8 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText usernameEdt;
     private EditText passwordEdt;
     private EditText passwordAgainEdt;
+
+    private int registerStatus = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 username = usernameEdt.getText().toString();
@@ -61,8 +73,31 @@ public class RegisterActivity extends AppCompatActivity {
                     passwordAgainEdt.requestFocus();
                 } else {
                     sendRegisterRequest(username, password);
+                    Log.d(TAG, "-----------registerStatus: " + registerStatus);
+
+                    switch (registerStatus) {
+                        //失败
+                        case -1:
+                            Toast.makeText(RegisterActivity.this, "该用户名已被使用",
+                                    Toast.LENGTH_SHORT).show();
+                            break;
+                        case 0:
+                            Toast.makeText(RegisterActivity.this, "未知错误",
+                                    Toast.LENGTH_SHORT).show();
+                            break;
+                        //成功
+                        case 1:
+                            Toast.makeText(RegisterActivity.this, "注册成功，请登录",
+                                    Toast.LENGTH_SHORT).show();
+                            finish();
+                            break;
+                        default:
+                            Toast.makeText(RegisterActivity.this, "未知错误",
+                                    Toast.LENGTH_SHORT).show();
+                            break;
+                    }
                 }
-//                Log.d("23333", "onClick: on----------------");
+
             }
         });
     }
@@ -90,15 +125,39 @@ public class RegisterActivity extends AppCompatActivity {
                             .post(requestBody)
                             .build();
                     Response response = client.newCall(request).execute();
-                    String responseDate = response.body().string();
+                    if (response.isSuccessful()) {
+                        registerStatus = getResponseStatusCode(response.body().string());
+                    }
 //                    String responseDate = JSON.toJSONString(response.body());
-                    Log.d("23333", "responseDate:------------ ." + responseDate);
+//                    Log.d("23333", "responseDate:------------ ." + JSON.toJSONString(registerResponseBean));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         }).start();
 
+    }
+
+
+    /**
+     * 解析结果
+     *
+     * @param res
+     * @return
+     */
+    private int getResponseStatusCode(String res) {
+        RegisterResponseBean registerResponseBean = null;
+        try {
+            JSONObject Obj = JSON.parseObject(res);
+            registerResponseBean = JSON.parseObject(Obj.toJSONString(), RegisterResponseBean.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (registerResponseBean != null) {
+            return registerResponseBean.getStatusCode();
+        } else {
+            return 0;
+        }
     }
 
     /**
