@@ -1,10 +1,14 @@
 package com.example.administrator.a001;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.Window;
@@ -84,17 +88,24 @@ public class SplashActivity extends Activity {
 
         setContentView(R.layout.activity_splash);
 
-        Timer timer = new Timer();
-        TimerTask task = new TimerTask() {
-            @Override
-            public void run() {
-                Intent intent = new Intent();
-                intent.setClass(SplashActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        };
-        timer.schedule(task,1000*3);
+        //获取网络权限
+        if (ContextCompat.checkSelfPermission(SplashActivity.this,
+                Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(SplashActivity.this,
+                    new String[]{Manifest.permission.INTERNET}, 1);
+        } else {
+            Timer timer = new Timer();
+            TimerTask task = new TimerTask() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent();
+                    intent.setClass(SplashActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            };
+            timer.schedule(task, 1000 * 3);
+        }
         /*// 自动登录
         SharedPreferences pref = getSharedPreferences("user", 0);
         String username = pref.getString("username", "");
