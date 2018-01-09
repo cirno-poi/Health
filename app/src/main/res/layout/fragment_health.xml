@@ -56,15 +56,15 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/total_layout"
             android:layout_centerHorizontal="true"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="50dp">
+            android:weightSum="4"
+            android:layout_marginTop="20dp">
 
             <RelativeLayout
                 android:id="@+id/item_health_1"
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <ImageView
@@ -81,18 +81,19 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:padding="2dp"
-                    android:text="身高（cm）"
+                    android:text="身高    (cm)"
                     android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textSize="16sp" />
                 
-                <!--<EditText
+                <EditText
+                    android:id="@+id/et_height"
                     android:layout_width="70dp"
-                    android:layout_height="20dp"
+                    android:layout_height="wrap_content"
                     android:layout_below="@id/tv_height"
-                    android:layout_weight="1"
                     android:gravity="center"
                     android:hint="180"
-                    />-->
+                    android:textSize="14sp"
+                    />
             </RelativeLayout>
 
             <RelativeLayout
@@ -100,6 +101,7 @@
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <ImageView
@@ -109,15 +111,26 @@
                     android:src="@drawable/weight" />
 
                 <TextView
+                    android:id="@+id/tv_weight"
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/image_weight"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:padding="2dp"
-                    android:text="体重60kg"
+                    android:text="体重     (kg)"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/et_weight"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_weight"
+                    android:gravity="center"
+                    android:hint="60"
+                    android:textSize="14sp"
+                    />
             </RelativeLayout>
 
             <RelativeLayout
@@ -125,6 +138,7 @@
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <ImageView
@@ -134,15 +148,26 @@
                     android:src="@drawable/heart_rate" />
 
                 <TextView
+                    android:id="@+id/tv_heart_rate"
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/image_heart_rate"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:padding="2dp"
-                    android:text="心率 90"
+                    android:text="心率(bpm)"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/et_heart_rate"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_heart_rate"
+                    android:gravity="center"
+                    android:hint="90"
+                    android:textSize="14sp"
+                    />
             </RelativeLayout>
 
             <RelativeLayout
@@ -150,6 +175,7 @@
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <ImageView
@@ -159,15 +185,26 @@
                     android:src="@drawable/lung" />
 
                 <TextView
+                    android:id="@+id/tv_lung"
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/image_lung"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:padding="2dp"
-                    android:text="肺活量3990"
+                    android:text="肺活量(mL)"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/et_lung"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_lung"
+                    android:gravity="center"
+                    android:hint="3000"
+                    android:textSize="14sp"
+                    />
             </RelativeLayout>
         </LinearLayout>
 
@@ -177,8 +214,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/health_item_layout_1"
             android:layout_centerHorizontal="true"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="15dp"
+            android:weightSum="4"
             android:layout_marginTop="0dp">
 
             <RelativeLayout
@@ -186,6 +222,7 @@
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <ImageView
@@ -195,15 +232,26 @@
                     android:src="@drawable/blood_pressure" />
 
                 <TextView
+                    android:id="@+id/tv_blood_presure"
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/image_blood_presure"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:padding="2dp"
-                    android:text="血压 90"
+                    android:text="血压(mmHg)"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/et_blood_presure"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_blood_presure"
+                    android:gravity="center"
+                    android:hint="105/69"
+                    android:textSize="14sp"
+                    />
             </RelativeLayout>
 
             <RelativeLayout
@@ -211,6 +259,7 @@
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <ImageView
@@ -220,22 +269,34 @@
                     android:src="@drawable/blood_sugar" />
 
                 <TextView
-                    android:layout_width="70dp"
+                    android:id="@+id/tv_blood_sugar"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/image_blood_sugar"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:padding="2dp"
-                    android:text="血糖5mmol/L"
+                    android:text="血糖(mmol/L)"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/et_blood_sugar"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_blood_sugar"
+                    android:gravity="center"
+                    android:hint="6.1"
+                    android:textSize="14sp"
+                    />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/item_health_7"
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <ImageView
@@ -245,15 +306,26 @@
                     android:src="@drawable/temperature" />
 
                 <TextView
+                    android:id="@+id/tv_temperature"
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/image_temperature"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:padding="2dp"
-                    android:text="体温 37℃"
+                    android:text="体温   (℃)"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/et_temperature"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_temperature"
+                    android:gravity="center"
+                    android:hint="37"
+                    android:textSize="14sp"
+                    />
             </RelativeLayout>
 
             <RelativeLayout
@@ -261,6 +333,7 @@
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <ImageView
@@ -270,17 +343,41 @@
                     android:src="@drawable/walking" />
 
                 <TextView
+                    android:id="@+id/tv_walking"
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/image_walking"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:padding="2dp"
-                    android:text="步数 3000"
+                    android:text="步数   (步)"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/et_walking"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_walking"
+                    android:gravity="center"
+                    android:hint="3000"
+                    android:textSize="14sp"
+                    />
             </RelativeLayout>
         </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_ok"
+            android:layout_below="@+id/health_item_layout_2"
+            android:background="@color/orange"
+            android:text="确认修改"
+            android:textColor="@color/blue_white"
+            android:layout_centerHorizontal="true"
+            />
 
         <TextView
             android:layout_width="match_parent"
