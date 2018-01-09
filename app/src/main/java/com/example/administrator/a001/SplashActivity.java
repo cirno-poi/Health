@@ -88,24 +88,19 @@ public class SplashActivity extends Activity {
 
         setContentView(R.layout.activity_splash);
 
-        //获取网络权限
-        if (ContextCompat.checkSelfPermission(SplashActivity.this,
-                Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(SplashActivity.this,
-                    new String[]{Manifest.permission.INTERNET}, 1);
-        } else {
-            Timer timer = new Timer();
-            TimerTask task = new TimerTask() {
-                @Override
-                public void run() {
-                    Intent intent = new Intent();
-                    intent.setClass(SplashActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
-            };
-            timer.schedule(task, 1000 * 3);
-        }
+
+        Timer timer = new Timer();
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                Intent intent = new Intent();
+                intent.setClass(SplashActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        };
+        timer.schedule(task, 1000 * 3);
+
         /*// 自动登录
         SharedPreferences pref = getSharedPreferences("user", 0);
         String username = pref.getString("username", "");

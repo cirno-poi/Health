@@ -13,8 +13,16 @@ import android.view.KeyEvent;
 import android.widget.Toast;
 //import android.widget.Toolbar;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class MainActivity extends FragmentActivity implements BottomNavigationBar.OnTabSelectedListener {
 
@@ -69,17 +77,56 @@ public class MainActivity extends FragmentActivity implements BottomNavigationBa
 
 
 
+    //退出应用
     public boolean onKeyDown(int keyCode,KeyEvent event){
         if(keyCode == KeyEvent.KEYCODE_BACK){
             if(System.currentTimeMillis() - startTime >2000){
                 Toast.makeText(MainActivity.this, "再按一次退出", Toast.LENGTH_SHORT).show();
                 startTime = System.currentTimeMillis();
             }else{
+                sendLogoutRequest("","");
                 finish();
             }
         }
         return true;
     }
+
+    /**
+     * 发送注册请求
+     *
+     * @param username 用户名
+     * @param password 密码
+     */
+    private void sendLogoutRequest(final String username, final String password) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+//                    Log.d("23333", "sendRegisterRequest:------------ .");
+
+                    OkHttpClient client = new OkHttpClient();
+                    RequestBody requestBody = new FormBody.Builder()
+                            .add("username", username)
+                            .add("password", password)
+                            .build();
+                    Request request = new Request.Builder()
+                            .url("http://120.78.134.216/kajousekki/public/index.php?s=/interfaces/user/logou")
+                            .post(requestBody)
+                            .build();
+                    Response response = client.newCall(request).execute();
+
+//                    String responseDate = JSON.toJSONString(response.body());
+//                    Log.d("23333", "responseDate:------------ ." + JSON.toJSONString(registerResponseBean));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
+    }
+
+
+
 
     @Override
     public void onTabSelected(int position) {

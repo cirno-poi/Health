@@ -39,17 +39,17 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText passwordEdt;
     private EditText passwordAgainEdt;
 
-    private int registerStatus = 100;
+//    private int registerStatus = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        btnRegister = findViewById(R.id.btnRegister);
-        usernameEdt = findViewById(R.id.registerEdtUsername);
-        passwordEdt = findViewById(R.id.registerEdtPassword);
-        passwordAgainEdt = findViewById(R.id.edtPasswordAgain);
+        btnRegister = (Button) findViewById(R.id.btnRegister);
+        usernameEdt = (EditText) findViewById(R.id.registerEdtUsername);
+        passwordEdt = (EditText) findViewById(R.id.registerEdtPassword);
+        passwordAgainEdt = (EditText) findViewById(R.id.edtPasswordAgain);
 
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
@@ -73,29 +73,7 @@ public class RegisterActivity extends AppCompatActivity {
                     passwordAgainEdt.requestFocus();
                 } else {
                     sendRegisterRequest(username, password);
-                    Log.d(TAG, "-----------registerStatus: " + registerStatus);
-
-                    switch (registerStatus) {
-                        //失败
-                        case -1:
-                            Toast.makeText(RegisterActivity.this, "该用户名已被使用",
-                                    Toast.LENGTH_SHORT).show();
-                            break;
-                        case 0:
-                            Toast.makeText(RegisterActivity.this, "未知错误",
-                                    Toast.LENGTH_SHORT).show();
-                            break;
-                        //成功
-                        case 1:
-                            Toast.makeText(RegisterActivity.this, "注册成功，请登录",
-                                    Toast.LENGTH_SHORT).show();
-                            finish();
-                            break;
-                        default:
-                            Toast.makeText(RegisterActivity.this, "未知错误",
-                                    Toast.LENGTH_SHORT).show();
-                            break;
-                    }
+//                    Log.d(TAG, "-----------registerStatus: " + registerStatus);
                 }
 
             }
@@ -126,7 +104,7 @@ public class RegisterActivity extends AppCompatActivity {
                             .build();
                     Response response = client.newCall(request).execute();
                     if (response.isSuccessful()) {
-                        registerStatus = getResponseStatusCode(response.body().string());
+                        getResponseStatusCode(response.body().string());
                     }
 //                    String responseDate = JSON.toJSONString(response.body());
 //                    Log.d("23333", "responseDate:------------ ." + JSON.toJSONString(registerResponseBean));
@@ -142,22 +120,49 @@ public class RegisterActivity extends AppCompatActivity {
     /**
      * 解析结果
      *
-     * @param res
+     * @param res 返回的json串
      * @return
      */
-    private int getResponseStatusCode(String res) {
-        RegisterResponseBean registerResponseBean = null;
-        try {
-            JSONObject Obj = JSON.parseObject(res);
-            registerResponseBean = JSON.parseObject(Obj.toJSONString(), RegisterResponseBean.class);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if (registerResponseBean != null) {
-            return registerResponseBean.getStatusCode();
-        } else {
-            return 0;
-        }
+    private void getResponseStatusCode(final String res) {
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                RegisterResponseBean registerResponseBean = null;
+                try {
+                    JSONObject Obj = JSON.parseObject(res);
+                    registerResponseBean = JSON.parseObject(Obj.toJSONString(), RegisterResponseBean.class);
+
+                    if (registerResponseBean != null) {
+                        switch (registerResponseBean.getStatusCode()) {
+                            //失败
+                            case -1:
+                                Toast.makeText(RegisterActivity.this, "该用户名已被使用",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            case 0:
+                                Toast.makeText(RegisterActivity.this, "未知错误",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                            //成功
+                            case 1:
+                                Toast.makeText(RegisterActivity.this, "注册成功，请登录",
+                                        Toast.LENGTH_SHORT).show();
+                                finish();
+                                break;
+                            default:
+                                Toast.makeText(RegisterActivity.this, "未知错误",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+
     }
 
     /**

@@ -4,13 +4,14 @@ import java.io.Serializable;
 
 /**
  * 注册返回值bean
- *
+ * <p>
  * Created by Cirno ⑨ on 2018/1/8 0008.
  */
 
-public class RegisterResponseBean implements Serializable{
+public class RegisterResponseBean implements Serializable {
 
     private int statusCode;
+    private String msg;
 
     public RegisterResponseBean() {
     }
@@ -25,5 +26,13 @@ public class RegisterResponseBean implements Serializable{
 
     public void setStatusCode(int statusCode) {
         this.statusCode = statusCode;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 }

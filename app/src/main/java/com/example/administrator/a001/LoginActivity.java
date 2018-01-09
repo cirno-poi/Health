@@ -16,8 +16,23 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.example.administrator.a001.bean.LoginResponseBean;
+
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class LoginActivity extends Activity {
+
+
+    public static final String TAG = "LoginActivity";
+    public static final int INIT = 100;
 
     private Button btnLogin;
     private TextView tvLostPassword;
@@ -26,10 +41,22 @@ public class LoginActivity extends Activity {
     //    CheckBox ckLogin = null;
     private TextView tvRegister;
 
+    private int loginStatusCode = INIT;//登录返回值状态码
+    private String statusMsg = "";//状态描述
+
+    private String username = "";
+    private String password = "";
+
+//    private String result = "";
+
+//    private LoginResponseBean loginResponseBean = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+//        sendLoginRequest("pass", "nothing");//为了通过网络请求
 
         tvLostPassword = findViewById(R.id.tvLostPassword);
         edtUsername = findViewById(R.id.edtUsername);
@@ -61,51 +88,107 @@ public class LoginActivity extends Activity {
                 // TODO Auto-generated method stub
                 Log.d("MyHealth", "Login Button Click");
 
-                if (TextUtils.isEmpty(edtUsername.getText().toString())) {
-                    edtUsername.setError("请输入用户名");
+                username = edtUsername.getText().toString();
+                password = edtPassword.getText().toString();
+
+                if (TextUtils.isEmpty(username)) {
+                    edtUsername.setError(getResources().getString(R.string.input_username));
                     edtUsername.requestFocus();
-                } else if (TextUtils.isEmpty(edtPassword.getText().toString())) {
-                    edtPassword.setError("请输入密码");
+                } else if (TextUtils.isEmpty(password)) {
+                    edtPassword.setError(getResources().getString(R.string.input_password));
                     edtPassword.requestFocus();
-                }
-                else {
-                    // 记录用户名或密码
-//                    if (ckLogin.isChecked()) {
-//                        // 0: mode_private
-//                        SharedPreferences pref = getSharedPreferences("user",
-//                                Context.MODE_PRIVATE);
-//                        Editor editor = pref.edit(); // 编辑器
-//                        editor.putString("username", edtUsername.getText()
-//                                .toString());
-//                        editor.putString("password", edtPassword.getText()
-//                                .toString());
-//                        editor.commit(); // 一定要提交
-//
-//                    }
-//                    else {
-//                        // 清空以前的登录信息
-//                        SharedPreferences pref = getSharedPreferences("user",
-//                                Context.MODE_PRIVATE);
-//                        Editor editor = pref.edit();
-//                        editor.remove("username");
-//                        editor.remove("password");
-//                        editor.commit();
-//                    }
+                } else {
+                    sendLoginRequest(username, password);//发送登录请求
 
-                    // 显式意图
-                    MainActivity.actionStart(LoginActivity.this);
-                    // 隐式意图
-                    // Intent intent = new Intent();
-                    // intent.setAction("aa");
-                    // intent.addCategory("bb");
-                    // startActivity(intent);
-
-                    // 关闭LoginActivity
-                    finish();
+////                    if(loginResponseBean != null)
+////                    {
+////                        loginStatusCode = loginResponseBean.getStatusCode();
+////                    }
+////                    loginStatusCode = loginResponseBean.getStatusCode();
+//                    Log.d(TAG, "-----------loginStatusCodes: " + loginStatusCode);
+//                    if (loginStatusCode == 1) {
+//                        Toast.makeText(LoginActivity.this, "登录成功",
+//                                Toast.LENGTH_SHORT).show();
+//                        MainActivity.actionStart(LoginActivity.this);
+//                        finish();
+//                    } else {
+//                        Toast.makeText(LoginActivity.this, "error",
+//                                Toast.LENGTH_SHORT).show();
+//                    }
                 }
 
             }
         });
+    }
+
+    /**
+     * 发送登录请求
+     *
+     * @param username 用户名
+     * @param password 密码
+     */
+    private void sendLoginRequest(final String username, final String password) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+//                    Log.d("23333", "sendRegisterRequest:------------ .");
+
+                    OkHttpClient client = new OkHttpClient();
+                    RequestBody requestBody = new FormBody.Builder()
+                            .add("username", username)
+                            .add("password", password)
+                            .build();
+                    Request request = new Request.Builder()
+                            .url("http://120.78.134.216/kajousekki/public/index.php?s=/interfaces/user/login")
+                            .post(requestBody)
+                            .build();
+                    Response response = client.newCall(request).execute();
+                    if (response.isSuccessful()) {
+//                        result = response.body().string();
+                        getResponse(response.body().string());
+//                        statusMsg = getResponse(response.body().string()).getMsg();
+                    }
+//                    String responseDate = JSON.toJSONString(response.body());
+//                    Log.d("23333", "responseDate:------------ ." + JSON.toJSONString(registerResponseBean));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    /**
+     * 解析结果
+     *
+     * @param res 返回的json
+     * @return
+     */
+    private void getResponse(final String res) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                LoginResponseBean loginResponseBean = null;
+                try {
+                    JSONObject Obj = JSON.parseObject(res);
+                    loginResponseBean = JSON.parseObject(Obj.toJSONString(), LoginResponseBean.class);
+
+                    if (loginResponseBean.getStatusCode() == 1) {
+                        Toast.makeText(LoginActivity.this, "登录成功",
+                                Toast.LENGTH_SHORT).show();
+                        MainActivity.actionStart(LoginActivity.this);
+                        finish();
+                    } else {
+                        Toast.makeText(LoginActivity.this, "error",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+
     }
 
     @Override

@@ -23,25 +23,16 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
-
-            <!--
-            <intent-filter>
-                <action android:name="main" >
-                </action>
-                <action android:name="aa" >
-                </action>
-
-                <category android:name="android.intent.category.DEFAULT" >
-                </category>
-                <category android:name="bb" >
-                </category>
-            </intent-filter>
-            -->
+            
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_login"></activity>
-        <activity android:name=".RegisterActivity"></activity>
+            android:label="@string/title_activity_login">
+
+        </activity>
+        <activity android:name=".RegisterActivity">
+
+        </activity>
     </application>
 
 </manifest>
