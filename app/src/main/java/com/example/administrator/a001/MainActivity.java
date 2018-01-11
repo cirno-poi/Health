@@ -29,7 +29,6 @@ import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener {
 
-    ViewPager pager = null;
     Long startTime = 0L;
 
     private HealthFragment mHealthFragment;

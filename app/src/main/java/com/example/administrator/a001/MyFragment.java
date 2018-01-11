@@ -12,13 +12,25 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
 /**
  * Created by Administrator on 2017/10/27.
  */
 
 public class MyFragment extends Fragment {
-    Button btnLogout = null;
-    ListView lvMyList = null;
+//    ListView lvMyList = null;
+
+    private TextView tvUsername;
+    private Button btnLogout;
+
+    private TextView btnCalorie;
 
 
     public static MyFragment newInstance(String param1) {
@@ -28,7 +40,6 @@ public class MyFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-
 
 
     @Override
@@ -42,73 +53,67 @@ public class MyFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_my, container, false);
         Bundle bundle = getArguments();
         String agrs1 = bundle.getString("agrs1");
-        TextView tv = (TextView)view.findViewById(R.id.my_info_title_tv);
-        tv.setText(agrs1);
-        return view;
-    }
+//        TextView tv = (TextView) view.findViewById(R.id.my_info_title_tv);
+//        tv.setText(agrs1);
 
+        tvUsername = view.findViewById(R.id.my_username);
+        btnLogout = view.findViewById(R.id.btnLogout);
+        btnCalorie = view.findViewById(R.id.tv_Calorie);
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        // TODO Auto-generated method stub
-        super.onActivityCreated(savedInstanceState);
-
-        btnLogout = (Button) getActivity().findViewById(R.id.btnLogout);
-        lvMyList = (ListView) getActivity().findViewById(R.id.lvMyList);
-
-        // 每行布局(系统自带)
-        // android.R.layout.simple_list_item_1
-
-        // 数据
-        String[] data = { "修改头像", "修改密码", "上传病历"};
-        // String[] data = getResourcesmm().getStringArray(R.array.my_list_data);
-
-        // 适配器
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                getActivity(), android.R.layout.simple_list_item_1, data);
-
-        // 绑定
-        lvMyList.setAdapter(adapter);
-
-        // 事件处理
-        lvMyList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
+        btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                Intent intent = new Intent();
-
-                //暂定Login界面
-                switch (position) {
-                    case 0:
-                        intent.setClass(getActivity(), LoginActivity.class);
-                        break;
-                    case 1:
-                        intent.setClass(getActivity(), LoginActivity.class);
-                        break;
-                    case 2:
-                        intent.setClass(getActivity(), LoginActivity.class);
-                        break;
-                }
-                startActivity(intent);
+            public void onClick(View view) {
+                sendLogoutRequest(UserInfo.getUsername(), UserInfo.getToken());
+                LoginActivity.actionStart(getActivity());
+                getActivity().finish();
             }
         });
 
-        MyButtonListener listener = new MyButtonListener();
-        btnLogout.setOnClickListener(listener);
+        btnCalorie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CalorieActivity.actionStart(getActivity());
+            }
+        });
+
+        tvUsername.setText(UserInfo.getUsername());
+
+        return view;
     }
 
-    class MyButtonListener implements View.OnClickListener {
+    /**
+     * 发送登出请求
+     *
+     * @param username 用户名
+     * @param password 密码
+     */
+    private void sendLogoutRequest(final String username, final String password) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+//                    Log.d("23333", "sendRegisterRequest:------------ .");
 
-        @Override
-        public void onClick(View v) {
-            // TODO Auto-generated method stub
-            // 区分按钮
-            Intent intent = new Intent();
-            intent.setClass(getActivity(), LoginActivity.class);
-            startActivity(intent);
-            getActivity().finish();
-        }
+                    OkHttpClient client = new OkHttpClient();
+                    RequestBody requestBody = new FormBody.Builder()
+                            .add("username", username)
+                            .add("password", password)
+                            .build();
+                    Request request = new Request.Builder()
+                            .url("http://120.78.134.216/kajousekki/public/index.php?s=/interfaces/user/logou")
+                            .post(requestBody)
+                            .build();
+                    Response response = client.newCall(request).execute();
+
+//                    String responseDate = JSON.toJSONString(response.body());
+//                    Log.d("23333", "responseDate:------------ ." + JSON.toJSONString(registerResponseBean));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
 
     }
+
+
 }

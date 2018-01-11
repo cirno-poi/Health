@@ -4,6 +4,8 @@ package com.example.administrator.a001;
  * Created by Wei Jinhua on 2017/10/26.
  */
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
@@ -51,6 +53,16 @@ public class LoginActivity extends Activity {
 //    private String result = "";
 
 //    private LoginResponseBean loginResponseBean = null;
+
+    /**
+     * 页面跳转方法
+     *
+     * @param context 源页面context
+     */
+    public static void actionStart(Context context) {
+        Intent intent = new Intent(context, LoginActivity.class);
+        context.startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
