@@ -11,7 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,7 +41,7 @@ public class HealthFragment extends Fragment {
 
     private static final String TAG = "HealthFragment";
 
-    private TextView BtnEdit;
+    //    private TextView BtnEdit;
     private TextView BtnEditOk;
 
     private EditText edtHeight;
@@ -49,10 +51,14 @@ public class HealthFragment extends Fragment {
     private EditText edtBloodPresure;
     private EditText edtBloodSugar;
     private EditText edtTemperature;
-    private EditText edtWalking;
+    //    private EditText edtWalking;
     private LinearLayout totalLayout;
     private TextView tvTotal;
     private TextView tvTotalDesc;
+
+    private RelativeLayout BtnEdit;
+    private ImageView ImgEdit;
+
 
     private ScrollView scrollView;
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -125,16 +131,20 @@ public class HealthFragment extends Fragment {
         edtBloodPresure = view.findViewById(R.id.et_blood_presure);
         edtBloodSugar = view.findViewById(R.id.et_blood_sugar);
         edtTemperature = view.findViewById(R.id.et_temperature);
-        edtWalking = view.findViewById(R.id.et_walking);
+//        edtWalking = view.findViewById(R.id.et_walking);
 
-        BtnEdit = view.findViewById(R.id.edit_btn);//修改按钮
+        BtnEdit = view.findViewById(R.id.item_health_edit);//修改按钮
         BtnEditOk = view.findViewById(R.id.edit_ok);//修改完成按钮
+
+        ImgEdit = view.findViewById(R.id.image_edit);//修改按钮图片
+
 
         BtnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setEdtEnable(true);
                 BtnEditOk.setVisibility(View.VISIBLE);
+                ImgEdit.setImageDrawable(getActivity().getDrawable(R.drawable.edit_icon_grey));
             }
         });
 
@@ -150,6 +160,7 @@ public class HealthFragment extends Fragment {
                 healthInfoRequestBean.heartRate = edtHeartRate.getText().toString();
                 healthInfoRequestBean.vitalCapacity = edtLung.getText().toString();
                 setHealthInfoRequest(healthInfoRequestBean);
+                ImgEdit.setImageDrawable(getActivity().getDrawable(R.drawable.edit_icon));
             }
         });
 
@@ -169,7 +180,7 @@ public class HealthFragment extends Fragment {
         edtBloodPresure.setEnabled(isEnable);
         edtBloodSugar.setEnabled(isEnable);
         edtTemperature.setEnabled(isEnable);
-        edtWalking.setEnabled(isEnable);
+//        edtWalking.setEnabled(isEnable);
 
         edtHeight.setFocusable(isEnable);
         edtWeight.setFocusable(isEnable);
@@ -178,7 +189,7 @@ public class HealthFragment extends Fragment {
         edtBloodPresure.setFocusable(isEnable);
         edtBloodSugar.setFocusable(isEnable);
         edtTemperature.setFocusable(isEnable);
-        edtWalking.setFocusable(isEnable);
+//        edtWalking.setFocusable(isEnable);
 
         edtHeight.setFocusableInTouchMode(isEnable);
         edtWeight.setFocusableInTouchMode(isEnable);
@@ -187,7 +198,7 @@ public class HealthFragment extends Fragment {
         edtBloodPresure.setFocusableInTouchMode(isEnable);
         edtBloodSugar.setFocusableInTouchMode(isEnable);
         edtTemperature.setFocusableInTouchMode(isEnable);
-        edtWalking.setFocusableInTouchMode(isEnable);
+//        edtWalking.setFocusableInTouchMode(isEnable);
 
         if (isEnable) {
             edtHeight.requestFocus();
@@ -358,6 +369,7 @@ public class HealthFragment extends Fragment {
                         JSONObject basicInfo = (JSONObject) Obj.get("healthyLevel");
 //                    JSONObject statusCode = (JSONObject) Obj.get("statusCode");
                         healthLevelBean = JSON.parseObject(basicInfo.toJSONString(), HealthLevelBean.class);
+//                        Log.d(TAG, "-------------healthLevelBean: " + basicInfo.toJSONString());
                         setHealthLevelInfo(healthLevelBean);
                     }
                 } catch (Exception e) {
@@ -392,12 +404,12 @@ public class HealthFragment extends Fragment {
 
         if (healthLevelBean != null) {
             int totalLevel = healthLevelBean.getTotal();
+//            Log.d(TAG, "------------totalLevel: " + totalLevel);
             if (totalLevel >= 4) {
                 tvTotal.setText("健康");
                 tvTotalDesc.setText("您很健康，请继续保持~");
                 totalLayout.setBackground(getActivity().getDrawable(R.drawable.health_info_bg_green));
-            }
-            if (totalLevel >= 2 && totalLevel < 4) {
+            } else if (totalLevel >= 2 && totalLevel < 4) {
                 tvTotal.setText("亚健康");
                 tvTotalDesc.setText("身体有点小毛病哦，请多加注意");
                 totalLayout.setBackground(getActivity().getDrawable(R.drawable.health_info_bg_yellow));

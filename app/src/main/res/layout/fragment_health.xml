@@ -48,11 +48,11 @@
                 </FrameLayout>
 
                 <TextView
-                    android:layout_marginEnd="20dp"
                     android:id="@+id/health_lv_desc"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginEnd="20dp"
                     android:layout_weight="1"
                     android:ellipsize="marquee"
                     android:text="请稍等..."
@@ -379,64 +379,57 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:id="@+id/item_health_8"
+                    android:id="@+id/item_health_edit"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:clickable="true"
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/image_walking"
+                        android:id="@+id/image_edit"
                         android:layout_width="wrap_content"
                         android:layout_height="70dp"
+                        android:clickable="false"
                         android:paddingEnd="@dimen/health_item_div"
                         android:paddingStart="@dimen/health_item_div"
-                        android:src="@drawable/walking" />
+                        android:src="@drawable/edit_icon" />
 
                     <TextView
                         android:id="@+id/tv_walking"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/image_walking"
+                        android:layout_below="@id/image_edit"
+                        android:clickable="false"
                         android:gravity="center"
                         android:lines="2"
-                        android:text="@string/health_item_walking"
+                        android:text="修改"
                         android:textColor="@color/black"
                         android:textSize="@dimen/health_item_font" />
 
-                    <EditText
-                        android:id="@+id/et_walking"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/tv_walking"
-                        android:background="@null"
-                        android:enabled="false"
-                        android:focusable="false"
-                        android:gravity="center"
-                        android:hint="@string/health_item_no_data"
-                        android:inputType="number"
-                        android:maxLength="7"
-                        android:textColor="@color/health_item_edt_font"
-                        android:textSize="@dimen/health_item_edt_font" />
+                    <!--<EditText-->
+                    <!--android:id="@+id/et_walking"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@id/tv_walking"-->
+                    <!--android:background="@null"-->
+                    <!--android:enabled="false"-->
+                    <!--android:focusable="false"-->
+                    <!--android:gravity="center"-->
+                    <!--android:hint="@string/health_item_no_data"-->
+                    <!--android:inputType="number"-->
+                    <!--android:maxLength="7"-->
+                    <!--android:textColor="@color/health_item_edt_font"-->
+                    <!--android:textSize="@dimen/health_item_edt_font" />-->
                 </RelativeLayout>
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/edit_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_below="@+id/health_item_layout_2"
-                android:paddingEnd="30dp"
-                android:paddingStart="25dp"
-                android:text="@string/health_item_change"
-                android:textColor="@color/font_grey" />
 
             <Button
                 android:id="@+id/edit_ok"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/edit_btn"
+                android:layout_below="@+id/health_item_layout_2"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="60dp"
                 android:layout_marginTop="10dp"

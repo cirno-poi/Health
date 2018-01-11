@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
                 Toast.makeText(MainActivity.this, "再按一次退出", Toast.LENGTH_SHORT).show();
                 startTime = System.currentTimeMillis();
             } else {
-                sendLogoutRequest("", "");
+                sendLogoutRequest(UserInfo.getUsername(), UserInfo.getToken());
                 finish();
             }
         }

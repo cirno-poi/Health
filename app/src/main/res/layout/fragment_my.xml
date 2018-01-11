@@ -33,21 +33,15 @@
 
     </ListView>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="72dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp">
+
         <Button
+            android:layout_alignParentBottom="true"
+            android:layout_margin="20dp"
             android:id="@+id/btnLogout"
-            android:layout_below="@+id/lvMyList"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/orange"
             android:text="退出登录"
             android:textColor="@drawable/button_font" />
-    </LinearLayout>
+
 </RelativeLayout>
