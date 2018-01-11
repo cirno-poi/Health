@@ -6,14 +6,14 @@
     tools:context="com.example.administrator.a001.MyFragment">
 
     <TextView
-        android:visibility="gone"
         android:id="@+id/my_info_title_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="这是我的信息"
         android:textColor="@color/black"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:visibility="gone" />
 
     <ImageView
         android:id="@+id/imageView1"
@@ -21,27 +21,73 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:src="@drawable/user_male4_50" />
 
-    <ListView
-        android:layout_marginTop="150dp"
-        android:id="@+id/lvMyList"
+    <TextView
+        android:id="@+id/my_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="10dp"
+        android:text="请稍后..."
+        android:textColor="@color/black"
+        android:textSize="17sp" />
+
+    <View
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_below="@+id/my_info_title_tv">
+        android:layout_height="1dp"
+        android:layout_above="@+id/upload_tv"
+        android:background="@color/grey" />
 
-    </ListView>
+    <TextView
+        android:id="@+id/upload_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/my_username"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:text="上传病历"
+        android:textColor="@color/black"
+        android:textSize="17sp" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/upload_tv"
+        android:background="@color/grey" />
 
-        <Button
-            android:layout_alignParentBottom="true"
-            android:layout_margin="20dp"
-            android:id="@+id/btnLogout"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/orange"
-            android:text="退出登录"
-            android:textColor="@drawable/button_font" />
+    <TextView
+        android:id="@+id/tv_Calorie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/upload_tv"
+        android:paddingBottom="10dp"
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp"
+        android:paddingTop="10dp"
+        android:text="卡路里计算器"
+        android:textColor="@color/black"
+        android:textSize="17sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/tv_Calorie"
+        android:background="@color/grey" />
+
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
+        android:background="@color/orange"
+        android:text="退出登录"
+        android:textColor="@drawable/button_font" />
 
 </RelativeLayout>

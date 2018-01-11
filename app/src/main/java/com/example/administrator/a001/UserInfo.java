@@ -4,14 +4,14 @@ import android.content.SharedPreferences;
 
 /**
  * 用于存放用户信息
- *
+ * <p>
  * Created by Cirno ⑨ on 2018/1/10 0010.
  */
 
 public class UserInfo {
 
-    private static String username;
-    private static String token;
+    private static String username = "";
+    private static String token = "";
 
 
     public static String getUsername() {

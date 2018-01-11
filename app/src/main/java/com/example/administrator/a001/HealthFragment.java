@@ -151,7 +151,6 @@ public class HealthFragment extends Fragment {
         BtnEditOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //还需要发送请求
                 setEdtEnable(false);
                 BtnEditOk.setVisibility(View.GONE);
                 HealthInfoRequestBean healthInfoRequestBean = new HealthInfoRequestBean();
@@ -243,8 +242,12 @@ public class HealthFragment extends Fragment {
 //                        statusMsg = getResponse(response.body().string()).getMsg();
                     }
                     if (response2.isSuccessful()) {
-                        getLevelResponse(response2.body().string());
+                        String data = response2.body().string();
+                        getLevelResponse(data);
+                        Log.d(TAG, "---------------------------data: " + data);
 //                        statusMsg = getResponse(response.body().string()).getMsg();
+                    }else {
+//                        setHealthLevelInfo(null);
                     }
 //                    String responseDate = JSON.toJSONString(response.body());
 //                    Log.d("23333", "responseDate:------------ ." + JSON.toJSONString(registerResponseBean));
@@ -424,16 +427,18 @@ public class HealthFragment extends Fragment {
                 totalLayout.setBackground(getActivity().getDrawable(R.drawable.health_info_bg_yellow));
             } else {
                 tvTotal.setText("不健康");
-                tvTotalDesc.setText("您有很大的健康问题，建议您及时就医！");
+                tvTotalDesc.setText("您有严重的健康问题，建议您及时就医！");
                 totalLayout.setBackground(getActivity().getDrawable(R.drawable.health_info_bg_red));
             }
+        } else {
+            tvTotal.setText("");
+            tvTotalDesc.setText("请输入个人信息~");
         }
     }
 
     private void refresh() {
         getHealthInfoRequest(UserInfo.getUsername(), UserInfo.getToken());
         swipeRefreshLayout.setRefreshing(false);
-
         if (infoStatus == 1) {
             Toast.makeText(getActivity(), "刷新成功", Toast.LENGTH_SHORT).show();
         } else {
