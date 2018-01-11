@@ -16,7 +16,7 @@
 
     <EditText
         android:textColor="@color/font_grey"
-        android:id="@+id/editText"
+        android:id="@+id/editText_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/serchbutton"
@@ -44,7 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/search_quickbtns1"
-        android:layout_below="@+id/editText"
+        android:layout_below="@+id/editText_search"
         android:layout_centerHorizontal="true"
         android:weightSum="4"
         android:layout_marginTop="20dp"

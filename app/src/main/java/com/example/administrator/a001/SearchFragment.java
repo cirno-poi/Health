@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -18,6 +16,7 @@ import android.widget.TextView;
 
 public class SearchFragment extends Fragment implements View.OnClickListener {
 
+    private EditText editText_search = null;
     private Button btnSearch = null;
 
     private Button quickbtn1 = null;
@@ -45,7 +44,6 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        //init();
     }
 
     @Override
@@ -57,13 +55,9 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
         TextView tv = (TextView) view.findViewById(R.id.lucky_title_tv);
         tv.setText(agrs1);
 
-        /*btnSearch = (Button) getActivity().findViewById(R.id.serchbutton);
-        btnSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //onSearchRequested();
-            }
-        });*/
+        editText_search = (EditText) view.findViewById(R.id.editText_search);
+        btnSearch = (Button) view.findViewById(R.id.serchbutton);
+
         quickbtn1 = (Button) view.findViewById(R.id.quickbtn1);
         quickbtn2 = (Button) view.findViewById(R.id.quickbtn2);
         quickbtn3 = (Button) view.findViewById(R.id.quickbtn3);
@@ -82,17 +76,7 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
         quickbtn7.setOnClickListener(this);
         quickbtn8.setOnClickListener(this);
 
-//        quickbtn1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getActivity(),WebviewActivity.class);
-////                intent.setClass(getActivity(),WebviewActivity.class);
-//                intent.putExtra("str", url);
-//                startActivity(intent);
-//
-//            }
-//        });
-
+        btnSearch.setOnClickListener(this);
 
         return view;
     }
@@ -125,13 +109,16 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
             case R.id.quickbtn8:
                 url = "http://www.120ask.com/dept/pfgm/";
                 break;
+            case R.id.serchbutton:
+                url = "https://zhidao.baidu.com/search?word="+editText_search.getText().toString();
+                break;
             default:
                 url = "http://www.baidu.com";
                 break;
         }
         Intent intent = new Intent(getActivity(), WebviewActivity.class);
-//                intent.setClass(getActivity(),WebviewActivity.class);
         intent.putExtra("str", url);
         startActivity(intent);
+
     }
 }
