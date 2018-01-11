@@ -14,26 +14,187 @@
         android:textColor="@color/black"
         android:textSize="20sp" />
 
-    <Button
+    <EditText
         android:textColor="@color/font_grey"
-        android:background="@color/blue"
-        android:id="@+id/button2"
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/serchbutton"
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="10dp"
+        android:layout_toStartOf="@+id/serchbutton"
+        android:ems="10"
+        android:hint="请输入关键字" />
+
+    <Button
+        android:textColor="@color/white"
+        android:background="@color/LightSkyBlue"
+        android:id="@+id/serchbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
         android:layout_marginEnd="26dp"
         android:layout_marginTop="36dp"
-        android:text="搜索" />
+        android:text="搜索"
 
-    <EditText
-        android:textColor="@color/font_grey"
-        android:id="@+id/editText"
-        android:layout_width="wrap_content"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/button2"
-        android:layout_marginEnd="12dp"
-        android:layout_toStartOf="@+id/button2"
-        android:ems="10"
-        android:hint="请输入关键字" />
+        android:id="@+id/search_quickbtns1"
+        android:layout_below="@+id/editText"
+        android:layout_centerHorizontal="true"
+        android:weightSum="4"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        >
+        <RelativeLayout
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            >
+            <Button
+                android:id="@+id/quickbtn1"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@color/BlanchedAlmond"
+                android:text="风寒"
+                android:textColor="@color/Peru"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/quickbtn2"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@color/Peru"
+                android:text="风热"
+                android:textColor="@color/white"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/quickbtn3"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@color/BlanchedAlmond"
+                android:text="发烧"
+                android:textColor="@color/Peru"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/quickbtn4"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@color/Peru"
+                android:text="哮喘"
+                android:textColor="@color/white"
+                />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/search_quickbtns2"
+        android:layout_below="@+id/search_quickbtns1"
+        android:layout_centerHorizontal="true"
+        android:weightSum="4"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        >
+        <RelativeLayout
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            >
+            <Button
+                android:id="@+id/quickbtn5"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@color/BlanchedAlmond"
+                android:text="胃肠炎"
+                android:textColor="@color/Peru"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/quickbtn6"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@color/Peru"
+                android:text="心血管病"
+                android:textColor="@color/white"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/quickbtn7"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@color/BlanchedAlmond"
+                android:text="鼻炎"
+                android:textColor="@color/Peru"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/quickbtn8"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@color/Peru"
+                android:text="皮肤过敏"
+                android:textColor="@color/white"
+                />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:layout_below="@+id/search_quickbtns2"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/health_icon_bkg"
+        android:alpha="0.2"
+        android:layout_centerHorizontal="true"
+        />
+
 </RelativeLayout>

@@ -60,7 +60,7 @@ public class MyFragment extends Fragment {
         // android.R.layout.simple_list_item_1
 
         // 数据
-        String[] data = { "我的联系人", "我的账户", "我的密码"};
+        String[] data = { "修改头像", "修改密码", "上传病历"};
         // String[] data = getResourcesmm().getStringArray(R.array.my_list_data);
 
         // 适配器

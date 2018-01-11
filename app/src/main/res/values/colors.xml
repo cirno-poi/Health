@@ -11,7 +11,13 @@
 
     <color name="orange">#F60</color>
 
+    <color name="Peru">	#CD853F</color>
+
+    <color name="LightSkyBlue">	#87CEFA</color>
+
     <color name="black">#000</color>
+    
+    <color name="BlanchedAlmond">#FFEBCD</color>
 
     <color name="font_grey">#4f4f4f</color>
 

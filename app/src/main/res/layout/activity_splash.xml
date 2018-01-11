@@ -11,6 +11,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="50dp"
-        android:text="正在登录，请稍后..."
+        android:text="您的健康管理助手^_^"
         android:textColor="#fff" />
 </RelativeLayout>

@@ -14,4 +14,5 @@
     <!-- listview item -->
     <dimen name="item_horizontal_margin">5dp</dimen>
 
+
 </resources>

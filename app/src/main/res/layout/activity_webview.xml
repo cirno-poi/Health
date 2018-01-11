@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<!--    <Button
+        android:textColor="@color/font_grey"
+        android:background="@color/blue"
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="26dp"
+        android:layout_marginTop="36dp"
+        android:text="搜索" />
+
+    <EditText
+        android:textColor="@color/font_grey"
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/button2"
+        android:layout_marginEnd="12dp"
+        android:layout_toStartOf="@+id/button2"
+        android:ems="10"
+        android:hint="请输入关键字" />-->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:id="@+id/secondTxt"
+        android:gravity="center"
+        android:hint="test"
+        android:visibility="gone"
+        />
+
+    <WebView
+        android:layout_marginTop="0dp"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/editText"
+        android:layout_height="match_parent"
+        android:id="@+id/webview"
+
+        />
+
+
+</RelativeLayout>
