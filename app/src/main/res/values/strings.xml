@@ -29,6 +29,18 @@
     <string name="lucky">发现</string>
     <string name="my_account">我的</string>
 
+    <string name="health_item_no_data">-</string>
+
+    <string name="health_item_height">身高(cm)</string>
+    <string name="health_item_weight">体重(kg)</string>
+    <string name="health_item_heart_rate">心率(bpm)</string>
+    <string name="health_item_lung">肺活量</string>
+    <string name="health_item_temperature">体温(℃)</string>
+    <string name="health_item_walking">步数(步)</string>
+    <string name="health_item_blood_presure">血压\n(mmHg)</string>
+    <string name="health_item_blood_sugar">血糖\n(mmol/L)</string>
+    <string name="health_item_change"><u>修改</u></string>
+
 
     <!-- my list data -->
     <string-array name="my_list_data">

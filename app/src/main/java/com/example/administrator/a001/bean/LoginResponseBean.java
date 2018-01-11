@@ -12,6 +12,7 @@ public class LoginResponseBean implements Serializable {
 
     private int statusCode;
 //    private String msg;
+    private String token;
 
 
     public LoginResponseBean() {
@@ -28,7 +29,7 @@ public class LoginResponseBean implements Serializable {
     public void setStatusCode(int statusCode) {
         this.statusCode = statusCode;
     }
-//
+
 //    public String getMsg() {
 //        return msg;
 //    }
@@ -36,4 +37,12 @@ public class LoginResponseBean implements Serializable {
 //    public void setMsg(String msg) {
 //        this.msg = msg;
 //    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 }

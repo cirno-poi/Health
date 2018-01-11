@@ -1,5 +1,6 @@
 package com.example.administrator.a001;
 
+import android.app.ActionBar;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
@@ -9,9 +10,11 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 //import android.app.ActionBar.Tab;
 //import android.app.ActionBar.TabListener;
+import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
+import android.widget.TextView;
 import android.widget.Toast;
-//import android.widget.Toolbar;
+import android.support.v7.widget.Toolbar;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -24,7 +27,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class MainActivity extends FragmentActivity implements BottomNavigationBar.OnTabSelectedListener {
+public class MainActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener {
 
     ViewPager pager = null;
     Long startTime = 0L;
@@ -32,14 +35,15 @@ public class MainActivity extends FragmentActivity implements BottomNavigationBa
     private HealthFragment mHealthFragment;
     private SearchFragment mSearchFragment;
     private MyFragment myFragment;
+    private TextView mTitle;
 
     /**
      * 页面跳转方法
      *
      * @param context 源页面context
      */
-    public static void actionStart(Context context){
-        Intent intent  = new Intent(context,MainActivity.class);
+    public static void actionStart(Context context) {
+        Intent intent = new Intent(context, MainActivity.class);
         context.startActivity(intent);
     }
 
@@ -49,7 +53,17 @@ public class MainActivity extends FragmentActivity implements BottomNavigationBa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BottomNavigationBar  mBottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottom_navigation_bar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayShowTitleEnabled(false);
+        }
+//        toolbar.setTitle("2333");
+
+        mTitle = findViewById(R.id.title);
+
+        BottomNavigationBar mBottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottom_navigation_bar);
 
         mBottomNavigationBar.setBarBackgroundColor(R.color.white_grey);//set background color for navigation bar，设置底部导航栏颜色
 
@@ -70,21 +84,20 @@ public class MainActivity extends FragmentActivity implements BottomNavigationBa
         FragmentManager fm = getFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
         mHealthFragment = HealthFragment.newInstance("健康");
+        mTitle.setText("健康");
         transaction.replace(R.id.tb, mHealthFragment);
         transaction.commit();
     }
 
 
-
-
     //退出应用
-    public boolean onKeyDown(int keyCode,KeyEvent event){
-        if(keyCode == KeyEvent.KEYCODE_BACK){
-            if(System.currentTimeMillis() - startTime >2000){
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (System.currentTimeMillis() - startTime > 2000) {
                 Toast.makeText(MainActivity.this, "再按一次退出", Toast.LENGTH_SHORT).show();
                 startTime = System.currentTimeMillis();
-            }else{
-                sendLogoutRequest("","");
+            } else {
+                sendLogoutRequest("", "");
                 finish();
             }
         }
@@ -92,7 +105,7 @@ public class MainActivity extends FragmentActivity implements BottomNavigationBa
     }
 
     /**
-     * 发送注册请求
+     * 发送登出请求
      *
      * @param username 用户名
      * @param password 密码
@@ -126,8 +139,6 @@ public class MainActivity extends FragmentActivity implements BottomNavigationBa
     }
 
 
-
-
     @Override
     public void onTabSelected(int position) {
         FragmentManager fm = this.getFragmentManager();
@@ -135,18 +146,21 @@ public class MainActivity extends FragmentActivity implements BottomNavigationBa
         FragmentTransaction transaction = fm.beginTransaction();
         switch (position) {
             case 0:
+                mTitle.setText("健康");
                 if (mHealthFragment == null) {
                     mHealthFragment = HealthFragment.newInstance("健康");
                 }
                 transaction.replace(R.id.tb, mHealthFragment);
                 break;
             case 1:
+                mTitle.setText("发现");
                 if (mSearchFragment == null) {
                     mSearchFragment = SearchFragment.newInstance("发现");
                 }
                 transaction.replace(R.id.tb, mSearchFragment);
                 break;
             case 2:
+                mTitle.setText("我的");
                 if (myFragment == null) {
                     myFragment = MyFragment.newInstance("我的");
                 }

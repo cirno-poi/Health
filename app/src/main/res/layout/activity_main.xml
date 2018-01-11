@@ -5,13 +5,35 @@
     android:id="@+id/layoutMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context="com.example.administrator.a001.MainActivity">
+
+    <android.support.v7.widget.Toolbar
+        app:title=""
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:gravity="center"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <TextView
+            android:id="@+id/title"
+            android:text="这是标题"
+            android:textColor="@color/white_grey"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+    </android.support.v7.widget.Toolbar>
 
     <LinearLayout
         android:id="@+id/tb"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/bottom_navigation_bar"
+        android:layout_below="@+id/toolbar"
         android:orientation="vertical" />
 
     <com.ashokvarma.bottomnavigation.BottomNavigationBar
