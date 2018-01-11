@@ -36,36 +36,13 @@
         android:textColor="@color/black"
         android:textSize="17sp" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_above="@+id/upload_tv"
-        android:background="@color/grey" />
 
-    <TextView
-        android:id="@+id/upload_tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/my_username"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp"
-        android:text="上传病历"
-        android:textColor="@color/black"
-        android:textSize="17sp" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@+id/upload_tv"
-        android:background="@color/grey" />
 
     <TextView
         android:id="@+id/tv_Calorie"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/upload_tv"
+        android:layout_below="@+id/my_username"
         android:paddingBottom="10dp"
         android:paddingEnd="20dp"
         android:paddingStart="20dp"
