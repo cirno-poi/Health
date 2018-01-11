@@ -15,25 +15,39 @@
         android:textColor="@color/black"
         android:textSize="20sp" />
 
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/user_male4_50" />
+
     <ListView
+        android:layout_marginTop="150dp"
         android:id="@+id/lvMyList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/my_info_title_tv"
-        android:layout_marginBottom="100dp">
+        android:layout_height="300dp"
+        android:layout_below="@+id/my_info_title_tv">
 
     </ListView>
 
-
-    <Button
-        android:id="@+id/btnLogout"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="42dp"
-        android:background="@color/orange"
-        android:text="退出登录"
-        android:textColor="@drawable/button_font" />
-
+        android:layout_marginBottom="72dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp">
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_below="@+id/lvMyList"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/orange"
+            android:text="退出登录"
+            android:textColor="@drawable/button_font" />
+    </LinearLayout>
 </RelativeLayout>
