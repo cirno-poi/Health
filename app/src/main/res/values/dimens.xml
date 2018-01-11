@@ -6,6 +6,11 @@
     <dimen name="login_font">20sp</dimen>
     <dimen name="login_edt_font">17sp</dimen>
 
+    <dimen name="health_item_div">20dp</dimen>
+    <dimen name="health_item_edt_font">20sp</dimen>
+    <dimen name="health_item_font">15sp</dimen>
+    <dimen name="health_item_edt_maxLength">10</dimen>
+
     <!-- listview item -->
     <dimen name="item_horizontal_margin">5dp</dimen>
 

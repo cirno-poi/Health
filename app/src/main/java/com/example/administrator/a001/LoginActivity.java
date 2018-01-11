@@ -4,6 +4,7 @@ package com.example.administrator.a001;
  * Created by Wei Jinhua on 2017/10/26.
  */
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
 import android.text.Html;
@@ -147,6 +148,7 @@ public class LoginActivity extends Activity {
                     if (response.isSuccessful()) {
 //                        result = response.body().string();
                         getResponse(response.body().string());
+                        UserInfo.setUsername(username);
 //                        statusMsg = getResponse(response.body().string()).getMsg();
                     }
 //                    String responseDate = JSON.toJSONString(response.body());
@@ -174,6 +176,7 @@ public class LoginActivity extends Activity {
                     loginResponseBean = JSON.parseObject(Obj.toJSONString(), LoginResponseBean.class);
 
                     if (loginResponseBean.getStatusCode() == 1) {
+                        UserInfo.setToken(loginResponseBean.getToken());
                         Toast.makeText(LoginActivity.this, "登录成功",
                                 Toast.LENGTH_SHORT).show();
                         MainActivity.actionStart(LoginActivity.this);
