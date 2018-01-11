@@ -14,5 +14,8 @@ public class HealthInfoRequestBean {
     public String height = "";
     public String vitalCapacity = "";
     public String heartRate = "";
+    public String bloodPressure = "";
+    public String bloodSugar = "";
+    public String bodyTemperature = "";
 
 }

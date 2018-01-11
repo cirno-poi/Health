@@ -14,6 +14,9 @@ public class HealthInfoResponseBean implements Serializable {
     private String height;
     private String vitalCapacity;
     private String heartRate;
+    private String blood_pressure;
+    private String blood_sugar;
+    private String body_temperature;
 
     public HealthInfoResponseBean() {
     }
@@ -48,5 +51,29 @@ public class HealthInfoResponseBean implements Serializable {
 
     public void setHeartRate(String heartRate) {
         this.heartRate = heartRate;
+    }
+
+    public String getBlood_pressure() {
+        return blood_pressure;
+    }
+
+    public String getBlood_sugar() {
+        return blood_sugar;
+    }
+
+    public String getBody_temperature() {
+        return body_temperature;
+    }
+
+    public void setBlood_pressure(String blood_pressure) {
+        this.blood_pressure = blood_pressure;
+    }
+
+    public void setBlood_sugar(String blood_sugar) {
+        this.blood_sugar = blood_sugar;
+    }
+
+    public void setBody_temperature(String body_temperature) {
+        this.body_temperature = body_temperature;
     }
 }

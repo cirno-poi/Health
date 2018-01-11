@@ -159,6 +159,9 @@ public class HealthFragment extends Fragment {
                 healthInfoRequestBean.weight = edtWeight.getText().toString();
                 healthInfoRequestBean.heartRate = edtHeartRate.getText().toString();
                 healthInfoRequestBean.vitalCapacity = edtLung.getText().toString();
+                healthInfoRequestBean.bloodPressure = edtBloodPresure.getText().toString();
+                healthInfoRequestBean.bloodSugar = edtBloodSugar.getText().toString();
+                healthInfoRequestBean.bodyTemperature = edtTemperature.getText().toString();
                 setHealthInfoRequest(healthInfoRequestBean);
                 ImgEdit.setImageDrawable(getActivity().getDrawable(R.drawable.edit_icon));
             }
@@ -271,6 +274,9 @@ public class HealthFragment extends Fragment {
                                 .add("height", healthInfoRequestBean.height)
                                 .add("vitalCapacity", healthInfoRequestBean.vitalCapacity)
                                 .add("heartRate", healthInfoRequestBean.heartRate)
+                                .add("bloodPressure", healthInfoRequestBean.bloodPressure)
+                                .add("bloodSugar", healthInfoRequestBean.bloodSugar)
+                                .add("bodyTemperature", healthInfoRequestBean.bodyTemperature)
                                 .build();
                         Request request = new Request.Builder()
                                 .url("http://120.78.134.216/kajousekki/public/index.php?s=/interfaces/behavior/setBasicInfo")
@@ -392,6 +398,9 @@ public class HealthFragment extends Fragment {
             edtWeight.setText(healthInfoResponseBean.getWeight());
             edtHeartRate.setText(healthInfoResponseBean.getHeartRate());
             edtLung.setText(healthInfoResponseBean.getVitalCapacity());
+            edtBloodPresure.setText(healthInfoResponseBean.getBlood_pressure());
+            edtBloodSugar.setText(healthInfoResponseBean.getBlood_sugar());
+            edtTemperature.setText(healthInfoResponseBean.getBody_temperature());
         }
     }
 
