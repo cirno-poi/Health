@@ -244,10 +244,8 @@ public class HealthFragment extends Fragment {
                     if (response2.isSuccessful()) {
                         String data = response2.body().string();
                         getLevelResponse(data);
-                        Log.d(TAG, "---------------------------data: " + data);
+//                        Log.d(TAG, "---------------------------data: " + data);
 //                        statusMsg = getResponse(response.body().string()).getMsg();
-                    }else {
-//                        setHealthLevelInfo(null);
                     }
 //                    String responseDate = JSON.toJSONString(response.body());
 //                    Log.d("23333", "responseDate:------------ ." + JSON.toJSONString(registerResponseBean));
@@ -346,7 +344,7 @@ public class HealthFragment extends Fragment {
                     int status = Obj.getIntValue("statusCode");
 //                    Log.d(TAG, "------------------status: " + status);
                     if (status == 1) {
-                        Toast.makeText(getActivity(), "修改成功", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "修改成功，请刷新", Toast.LENGTH_SHORT).show();
 //                        Log.d(TAG, "---------healthInfoResponseBean: " + basicInfo.toJSONString());
                     } else {
                         Toast.makeText(getActivity(), "修改失败", Toast.LENGTH_SHORT).show();
