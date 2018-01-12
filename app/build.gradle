@@ -29,5 +29,7 @@ dependencies {
     compile 'com.ashokvarma.android:bottom-navigation-bar:2.0.3'
     compile 'com.squareup.okhttp3:okhttp:3.9.1'
     compile 'com.alibaba:fastjson:1.2.44'
+    compile 'com.facebook.fresco:fresco:0.12.0'
+    compile 'com.android.support:design:26.1.0'
     testCompile 'junit:junit:4.12'
 }

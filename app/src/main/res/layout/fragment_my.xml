@@ -1,70 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_refresh"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.administrator.a001.MyFragment">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/my_info_title_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="这是我的信息"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:visibility="gone" />
-
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:src="@drawable/user_male4_50" />
-
-    <TextView
-        android:id="@+id/my_username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"
-        android:layout_marginTop="10dp"
-        android:text="请稍后..."
-        android:textColor="@color/black"
-        android:textSize="17sp" />
-
-
-
-    <TextView
-        android:id="@+id/tv_Calorie"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/my_username"
-        android:paddingBottom="10dp"
-        android:paddingEnd="20dp"
-        android:paddingStart="20dp"
-        android:paddingTop="10dp"
-        android:text="卡路里计算器"
-        android:textColor="@color/black"
-        android:textSize="17sp" />
+        android:layout_height="match_parent"
+        tools:context="com.example.administrator.a001.MyFragment">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@+id/tv_Calorie"
-        android:background="@color/grey" />
+        <TextView
+            android:id="@+id/my_info_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="这是我的信息"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:visibility="gone" />
 
-    <Button
-        android:id="@+id/btnLogout"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="20dp"
-        android:background="@color/orange"
-        android:text="退出登录"
-        android:textColor="@drawable/button_font" />
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/user_icon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            fresco:actualImageScaleType="focusCrop"
+            fresco:placeholderImage="@drawable/user_male4_50"
+            fresco:placeholderImageScaleType="fitCenter"
+            fresco:progressBarAutoRotateInterval="5000"
+            fresco:progressBarImage="@drawable/icon_progress"
+            fresco:progressBarImageScaleType="centerInside"
+            fresco:roundAsCircle="true"
+            tools:background="@color/black" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/my_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/user_icon"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="10dp"
+            android:text="请稍后..."
+            android:textColor="@color/black"
+            android:textSize="17sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_above="@+id/my_record_tv"
+            android:background="@color/grey" />
+
+        <TextView
+            android:id="@+id/change_psw_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/my_username"
+            android:paddingBottom="10dp"
+            android:paddingEnd="20dp"
+            android:paddingStart="20dp"
+            android:paddingTop="10dp"
+            android:text="修改密码"
+            android:textColor="@color/black"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/my_record_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/change_psw_tv"
+            android:paddingBottom="10dp"
+            android:paddingEnd="20dp"
+            android:paddingStart="20dp"
+            android:paddingTop="10dp"
+            android:text="我的病历"
+            android:textColor="@color/black"
+            android:textSize="17sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/my_record_tv"
+            android:background="@color/grey" />
+
+        <TextView
+            android:id="@+id/tv_Calorie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/my_record_tv"
+            android:paddingBottom="10dp"
+            android:paddingEnd="20dp"
+            android:paddingStart="20dp"
+            android:paddingTop="10dp"
+            android:text="卡路里计算器"
+            android:textColor="@color/black"
+            android:textSize="17sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/tv_Calorie"
+            android:background="@color/grey" />
+
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="20dp"
+            android:background="@color/orange"
+            android:text="退出登录"
+            android:textColor="@drawable/button_font" />
+
+    </RelativeLayout>
+</android.support.v4.widget.SwipeRefreshLayout>

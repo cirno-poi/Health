@@ -20,6 +20,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+import com.facebook.drawee.backends.pipeline.Fresco;
 
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
