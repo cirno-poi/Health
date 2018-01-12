@@ -79,9 +79,12 @@ public class LoginActivity extends Activity {
 
         // 忘记密码链接?
         tvLostPassword
-                .setText(Html
-                        .fromHtml("<a href=\"http://www.baidu.com\">忘记密码？</a>"));
-        tvLostPassword.setMovementMethod(LinkMovementMethod.getInstance());
+                .setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        ForgetActivity.actionStart(LoginActivity.this);
+                    }
+                });
 
         // 注册页面跳转
         tvRegister.setOnClickListener(new OnClickListener() {

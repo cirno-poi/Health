@@ -23,18 +23,21 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:launchMode="singleTask"></activity>
+            android:launchMode="singleTask" />
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"
-            android:launchMode="singleTask"></activity>
+            android:launchMode="singleTask" />
         <activity
             android:name=".RegisterActivity"
-            android:launchMode="singleTask"></activity>
+            android:launchMode="singleTask" />
         <activity
             android:name=".WebviewActivity"
-            android:launchMode="singleTask"></activity>
-        <activity android:name=".CalorieActivity"></activity>
+            android:launchMode="singleTask" />
+        <activity android:name=".CalorieActivity" />
+        <activity android:name=".ForgetActivity" />
+        <activity android:name=".QAActivity" />
+        <activity android:name=".SetNewPasswordActivity"></activity>
     </application>
 
 </manifest>

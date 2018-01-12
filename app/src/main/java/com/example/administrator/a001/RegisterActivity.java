@@ -34,10 +34,15 @@ public class RegisterActivity extends AppCompatActivity {
     private String username = "";//用户名
     private String password = "";//密码
     private String rePassword = "";//确认密码
+    private String question = "";//密保问题
+    private String answer = "";//密保问题答案
 
     private EditText usernameEdt;
     private EditText passwordEdt;
     private EditText passwordAgainEdt;
+    private EditText questionEdt;
+    private EditText answerEdt;
+
 
 //    private int registerStatus = 100;
 
@@ -50,6 +55,8 @@ public class RegisterActivity extends AppCompatActivity {
         usernameEdt = (EditText) findViewById(R.id.registerEdtUsername);
         passwordEdt = (EditText) findViewById(R.id.registerEdtPassword);
         passwordAgainEdt = (EditText) findViewById(R.id.edtPasswordAgain);
+        questionEdt = (EditText) findViewById(R.id.edtQuestion);
+        answerEdt = (EditText) findViewById(R.id.edtAnswer);
 
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
@@ -59,6 +66,9 @@ public class RegisterActivity extends AppCompatActivity {
                 username = usernameEdt.getText().toString();
                 password = passwordEdt.getText().toString();
                 rePassword = passwordAgainEdt.getText().toString();
+                question = questionEdt.getText().toString();
+                answer = answerEdt.getText().toString();
+
                 if (TextUtils.isEmpty(username)) {
                     usernameEdt.setError(getResources().getString(R.string.input_username));
                     usernameEdt.requestFocus();
@@ -71,8 +81,15 @@ public class RegisterActivity extends AppCompatActivity {
                 } else if (!password.equals(rePassword)) {
                     passwordAgainEdt.setError(getResources().getString(R.string.rePasswordWrong));
                     passwordAgainEdt.requestFocus();
-                } else {
-                    sendRegisterRequest(username, password);
+                } else if (TextUtils.isEmpty(question)){
+                    questionEdt.setError(getResources().getString(R.string.input_question));
+                    questionEdt.requestFocus();
+                } else if (TextUtils.isEmpty(answer)){
+                    answerEdt.setError(getResources().getString(R.string.input_answer));
+                    answerEdt.requestFocus();
+                }
+                else {
+                    sendRegisterRequest(username, password, question, answer);
 //                    Log.d(TAG, "-----------registerStatus: " + registerStatus);
                 }
 
@@ -86,7 +103,7 @@ public class RegisterActivity extends AppCompatActivity {
      * @param username 用户名
      * @param password 密码
      */
-    private void sendRegisterRequest(final String username, final String password) {
+    private void sendRegisterRequest(final String username, final String password, final String question, final String answer) {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -97,6 +114,8 @@ public class RegisterActivity extends AppCompatActivity {
                     RequestBody requestBody = new FormBody.Builder()
                             .add("username", username)
                             .add("password", password)
+                            .add("question", question)
+                            .add("answer", answer)
                             .build();
                     Request request = new Request.Builder()
                             .url("http://120.78.134.216/kajousekki/public/index.php?s=/interfaces/user/register")

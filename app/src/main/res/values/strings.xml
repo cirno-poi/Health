@@ -12,6 +12,12 @@
     <string name="input_username">请输入用户名</string>
     <string name="input_password">请输入密码</string>
     <string name="input_password_again">请再次输入密码</string>
+    <string name="input_question">请输入密保问题</string>
+    <string name="usernameout">用户名不存在</string>
+    <string name="answer_error">回答错误</string>
+    <string name="set_error">修改失败</string>
+    <string name="input_forget">确认找回</string>
+    <string name="input_answer">请输入密保问题答案</string>
     <string name="register">注册</string>
     <string name="forget_password">忘记密码？</string>
     <string name="rePasswordWrong">两次密码不一致</string>
