@@ -76,6 +76,7 @@ public class MyFragment extends Fragment {
     private TextView tvUsername;
     private Button btnLogout;
 
+    private TextView tvSetNewPwd;
     private TextView btnCalorie;
     private TextView btnMyRecord;
 
@@ -126,6 +127,7 @@ public class MyFragment extends Fragment {
         });
 
         tvUsername = view.findViewById(R.id.my_username);
+        tvSetNewPwd = view.findViewById(R.id.change_psw_tv);
         btnLogout = view.findViewById(R.id.btnLogout);
         btnCalorie = view.findViewById(R.id.tv_Calorie);
         userIcon = view.findViewById(R.id.user_icon);
@@ -138,6 +140,12 @@ public class MyFragment extends Fragment {
             }
         });
 
+        tvSetNewPwd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ForgetActivity.actionStart((getActivity()));
+            }
+        });
         userIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
