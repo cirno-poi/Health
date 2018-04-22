@@ -310,7 +310,7 @@ public class MyFragment extends Fragment {
                     JSONObject Obj = JSON.parseObject(res);
                     int status = Obj.getIntValue("statusCode");
                     if (status == 1) {
-                        Toast.makeText(getActivity(), "上传成功！", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "上传成功，请刷新", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(getActivity(), "上传失败！", Toast.LENGTH_SHORT).show();
 

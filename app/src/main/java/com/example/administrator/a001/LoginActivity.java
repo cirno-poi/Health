@@ -197,7 +197,7 @@ public class LoginActivity extends Activity {
                         MainActivity.actionStart(LoginActivity.this);
                         finish();
                     } else {
-                        Toast.makeText(LoginActivity.this, "error",
+                        Toast.makeText(LoginActivity.this, "用户名或密码错误",
                                 Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception e) {

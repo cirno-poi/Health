@@ -41,7 +41,7 @@
                         android:layout_marginEnd="10dp"
                         android:layout_marginStart="10dp"
                         android:gravity="center"
-                        android:text="请稍等..."
+                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="25sp" />
 
@@ -55,7 +55,7 @@
                     android:layout_marginEnd="20dp"
                     android:layout_weight="1"
                     android:ellipsize="marquee"
-                    android:text="请稍等..."
+                    android:text="请输入健康信息~"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
             </LinearLayout>
